@@ -1,0 +1,48 @@
+# Quick Switch To Directories
+alias down='cd ~/Downloads'
+alias code='cd ~/Code'
+alias blog='cd ~/Blog'
+alias repos='cd ~/Repositories'
+
+
+# Quick Config Editing
+alias i3config='vim ~/.config/i3/config'
+alias vimrc='vim ~/.vimrc'
+alias bashrc='vim ~/.bashrc'
+alias bspwmrc='vim ~/.config/bspwm/bspwmrc'
+alias aliasadd='vim ~/.alias'
+alias xresources='vim ~/.Xresources'
+alias polybarconf='vim ~/.config/polybar/config'
+alias reload='source ~/.bashrc'
+alias htop='htop -u mohabaks'
+
+# Miscellaneous Commands
+alias ls="ls --group-directories-first --time-style=+'%d.%m.%Y %H:%M' --color=auto -hFX"
+alias ll="ls -l --group-directories-first --time-style=+'%d.%m.%Y %H:%M' --color=auto -F"
+alias la="ls -la --group-directories-first --time-style=+'%d.%m.%Y %H:%M' --color=auto -F"
+alias grep='grep --color=tty -d skip'
+alias google='ping -c1 8.8.8.8'
+alias cp='cp -i'
+alias tcolor='for i in {0..255}; do printf "\x1b[38;5;${i}mcolor%-5i\x1b[0m" $i ; if ! (( ($i + 1 ) % 8 )); then echo ; fi ; done'
+alias df='df -h'
+alias free='free -m'
+alias rm='rm -i'
+alias pastebin="nc termbin.com 9999"
+alias msf="sudo msfconsole --quiet -y ~/.msf4/database.yml -m ~/.msf4/modules"
+alias armitage="sudo -E armitage"
+alias add_alias="vim ~/.alias"
+alias getip='grep -oE "\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b"'
+alias getemail="grep -Eiorh '([[:alnum:]_.-]+@[[:alnum:]_.-]+?\.[[:alpha:].]{2,6})' "$@" *"
+alias sshloadkey='eval "$(ssh-agent)" && ssh-add'
+alias onelinecat="tr '\n' ','"
+alias chromiumProxy="chromium --proxy-server=SOCKS5://whonix:9100"
+alias chromBlue="chromium --alsa-output-device=bluealsa"
+alias rdesktop="rdesktop -g 100% -P -z -x l -r sound:off"
+alias tmuxex="tmux -f ~/.tmux_mon.conf"
+alias ctfdir="mkdir {Scan,Enum,Expl}"
+
+# SSH servers
+alias homelab="ssh blackman@blacklab"
+alias eadclab="ssh ubuntu@cyb0rg.eadc.ke -p2222"
+alias freeBSD="ssh mohabaks@freebsd"
+alias raspi="ssh alarm@raspberry.blacknetwork.local"

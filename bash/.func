@@ -1,0 +1,69 @@
+#!/bin/bash
+#
+#  Custom function to be imported with .bashrc
+#
+
+connect(){
+        if [[ $# -eq 0 ]];then
+                echo "Usage: connect <wpa_config_file>"
+        elif [[ $# -eq 1 ]];then
+                sudo wpa_supplicant -B -Dwext -iwlp4s0 -c /etc/wpa_supplicant/"$1"
+        fi
+}
+
+extract(){
+        if [[ $# -eq 0 ]];then
+                echo "Usage: extract <compressed_file>"
+        elif [[ "$1" = *.xz ]];then
+                 tar xvf "$1"
+        elif [[ "$1" = *.ova ]];then
+                 tar xvf "$1"
+        elif [[ "$1" = *.gz ]];then
+                 tar xvfj "$1"
+        elif [[ "$1" = *.7z ]];then
+                 7z x "$1"
+        fi
+}
+
+
+youtube-dl-mp3(){
+        if [[ $# -eq 0 ]];then
+                echo "Usage: youtube-dl-mp3 <video URL>"
+        elif [[ $# -eq 1 ]];then
+                youtube-dl --extract-audio --audio-format mp3 "$1"
+        fi
+}
+
+tor_resolve(){
+        if [[ $# -eq 0 ]];then
+                echo "Usage: tor_resolve <hostname>"
+        elif [[ $# -eq 1 ]];then
+                tor-resolve "$1" 10.152.152.10:9050
+        fi
+}
+
+# Convert video to gif file.
+# Usage: video2gif video_file (scale) (fps)
+video2gif() {
+  ffmpeg -y -i "${1}" -vf fps=${3:-10},scale=${2:-320}:-1:flags=lanczos,palettegen "${1}.png"
+  ffmpeg -i "${1}" -i "${1}.png" -filter_complex "fps=${3:-10},scale=${2:-320}:-1:flags=lanczos[x];[x][1:v]paletteuse" "${1}".gif
+  rm "${1}.png"
+}
+
+# OpenVas
+# Update the plugins and vulnerability data
+OpenVasSync(){
+sudo greenbone-nvt-sync
+sudo greenbone-scapdata-sync
+sudo greenbone-certdata-sync
+}
+
+OpenVasStart(){
+sudo systemctl start openvas-scanner
+sudo openvasmd --rebuild --progress
+sudo openvasmd -p 9390 -a 127.0.0.1
+}
+
+Gsad(){
+sudo gsad -f --listen=127.0.0.1 --mlisten=127.0.0.1 --mport=9390
+}

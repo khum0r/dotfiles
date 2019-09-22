@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+
+# Source generated colors.
+source "${HOME}/.local/bin/color-parser"
+
+reload_dunst() {
+    pkill dunst
+    dunst \
+        -lb "$BG" \
+        -nb "$BG" \
+        -cb "$RED" \
+        -lf "$FG" \
+        -bf "$color15" \
+        -cf "$FG" \
+        -nfr "$CYAN" \
+        -nf "$WHITE" \
+        -geometry "${DUNST_SIZE:-300x20-20+25}" &
+}
+
+generate_zathurarc(){
+   . $HOME/.local/bin/gen-zathurarc > $HOME/.config/zathura/zathurarc
+}
+
+main() {
+    reload_dunst &
+    generate_zathurarc 
+}
+
+main

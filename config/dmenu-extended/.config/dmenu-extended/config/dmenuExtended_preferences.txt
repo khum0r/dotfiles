@@ -1,0 +1,134 @@
+{
+    "alias_applications": true,
+    "alias_display_format": "{name}",
+    "exclude_items": [],
+    "filebrowser": "xdg-open",
+    "fileopener": "xdg-open",
+    "filter_binaries": false,
+    "follow_symlinks": false,
+    "frequently_used": 0,
+    "global_ignore_folders": [],
+    "ignore_folders": [],
+    "include_applications": true,
+    "include_binaries": false,
+    "include_hidden_files": false,
+    "include_hidden_folders": false,
+    "include_items": [],
+    "indicator_alias": "",
+    "indicator_edit": "*",
+    "indicator_submenu": "->",
+    "menu": "dmenu",
+    "menu_arguments": [
+<<<<<<< HEAD
+        "-b",
+        "-i",
+        "-nf",
+        "#888888",
+        "-nb",
+        "#1D1F21",
+        "-sf",
+        "#ffffff",
+        "-sb",
+        "#1D1F21",
+        "-fn",
+        "terminus",
+=======
+        "-i",
+        "-nf",
+        "#B2B2B2",
+        "-nb",
+        "#000000",
+        "-sf",
+        "#FFFFFF",
+        "-sb",
+        "#18B2B2",
+        "-fn",
+        "lucy tewi",
+>>>>>>> Minimal_Dark_Rice
+        "-l",
+        "20"
+    ],
+    "password_helper": [
+        "zenity",
+        "--password",
+        "--title={prompt}"
+    ],
+<<<<<<< HEAD
+    "path_aliasFile": "",
+=======
+<<<<<<< HEAD
+    "path_aliasFile": "/home/cOb4l7/.alias",
+=======
+    "path_aliasFile": "/home/mohabaks/.alias",
+>>>>>>> e8726e7fd6bb604477ad412dd8a242cb77680bc0
+>>>>>>> Minimal_Dark_Rice
+    "path_shellCommand": "~/.dmenuEextended_shellCommand.sh",
+    "prompt": "Open:",
+    "scan_hidden_folders": false,
+    "terminal": "urxvt",
+    "valid_extensions": [
+        "py",
+        "svg",
+        "pdf",
+<<<<<<< HEAD
+=======
+        "epub",
+>>>>>>> Minimal_Dark_Rice
+        "txt",
+        "png",
+        "jpg",
+        "gif",
+        "php",
+        "tex",
+        "odf",
+        "ods",
+        "avi",
+        "mpg",
+        "mp3",
+<<<<<<< HEAD
+=======
+        "mp4",
+>>>>>>> Minimal_Dark_Rice
+        "lyx",
+        "bib",
+        "iso",
+        "ps",
+        "zip",
+        "xcf",
+        "doc",
+        "docxxls",
+        "xlsx",
+        "md",
+<<<<<<< HEAD
+        "html",
+        "sublime-project"
+    ],
+    "watch_folders": [
+        "~/"
+    ],
+    "webbrowser": "xdg-open"
+}
+=======
+        "html"
+    ],
+    "watch_folders": [
+<<<<<<< HEAD
+        "/home/cOb4l7/Documents/Tech",
+        "/home/cOb4l7/Videos/Tech",
+        "/home/cOb4l7/Videos/Misc",
+        "/home/cOb4l7/Videos/Islam",
+        "/home/cOb4l7/Pictures",
+        "/home/cOb4l7/Downloads"
+=======
+        "/home/mohabaks/Documents/Tech",
+        "/home/mohabaks/Videos/Tech",
+        "/home/mohabaks/Videos/Misc",
+        "/home/mohabaks/Videos/Islam",
+        "/home/mohabaks/Pictures",
+        "/home/mohabaks/Downloads"
+>>>>>>> e8726e7fd6bb604477ad412dd8a242cb77680bc0
+
+    ],
+    "webbrowser": "xdg-open"
+}
+>>>>>>> Minimal_Dark_Rice

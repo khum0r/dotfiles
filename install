@@ -1,0 +1,200 @@
+#!/bin/bash
+#
+# Author: https://github.com/cOb4l7
+# Date: Wed 15 May 2018
+# Description: A simple script to install https://github.com/cOb4l7/dotfiles
+# Dependecies: stow (GNU Stow) version 2.2.2 or above.
+#
+
+#
+#    MISC VAR
+#
+
+RED="\0033[31m"
+GREEN="\0033[32m"
+BLUE="\0033[34m"
+CLC="\0033[0m"
+STATUS=TRUE
+
+#
+#    FUNCTIONS
+#
+
+## Fancy banner
+banner(){
+echo -e "$GREEN"
+echo -e "            __         __               __          "
+echo -e ".--|  |.-----.|  |_.-----.----.|__|.----.-----.----."
+echo -e "|  _  ||  _  ||   _|__ --|   _||  ||  __|  -__|   _|"
+echo -e "|_____||_____||____|_____|__|  |__||____|_____|__|  "
+echo -e "$CLC"
+
+echo -e "$BLUE      https://github.com/cOb4l7/dotfiles $CLC\n"
+}
+
+## User menu
+menu(){
+cat << EOF
+1. Install all configs.
+2. Install a specific config.
+3. Delete all the configs installed.
+4. Delete a specific config installed.
+5. View all the available configs options.
+6. Quit
+EOF
+}
+
+## Install all the config
+install_all(){
+echo -e "$BLUE[*] Installing all the configs$CLC\n "
+# install parent configs
+for config in {bash,colors,compton,fonts,homepage,irssi,local,newsboat,themes,vim,weechat}
+do
+        echo -ne "    [+] Installing $config ..."
+        stow -t ~ "$config"
+        sleep 1
+        echo -ne "...     \t$GREEN[DONE]$CLC"
+        echo -ne "\n"
+done
+# install additional configs from the config dir
+cd config
+for config in *
+do
+        echo -ne "    [+] Installing $config ..."
+        stow -t ~ "$config"
+        sleep 1
+        echo -ne "...     \t$GREEN[DONE]$CLC"
+        echo -ne "\n"
+done
+cd ..
+echo ""
+exit
+}
+
+## Install specific config
+install_config(){
+# get user input
+echo -ne "$BLUE[*] Enter config name to install$CLC > "
+read config
+# install a specific config
+if [[ -d "$config" ]];then
+        echo -ne "    [+] Installing $config ..."
+        stow -t ~ "$config"
+        sleep 1
+        echo -ne "... \t$GREEN[DONE]$CLC"
+        echo -ne "\n\n"
+        exit
+else
+        # Change directory
+        cd config
+        if [[ -d "$config" ]];then
+                echo -ne "    [+] Installing $config ..."
+                stow -t ~ "$config"
+                sleep 1
+                echo -ne "... \t$GREEN[DONE]$CLC"
+                echo -ne "\n\n"
+                exit
+        else
+                # Get out of directory
+                # Print error message and exit
+                cd ..
+                echo -e "    $RED[-] $config config not found$CLC.\n    View all the available configs to install\n"
+                exit
+        fi
+fi
+}
+
+## Delete all the installed configs
+delete_all(){
+echo -ne "[+] Deleting all installed config ..."
+stow -D "$config"
+sleep 1
+echo -ne "..."
+cd config
+stow -D "$config"
+sleep 1
+echo -ne "... $GREEN[DONE]$CLC"
+echo -ne "\n\n"
+cd ..
+exit
+}
+
+## Delete a specific config
+delete_config(){
+# get user input
+echo -ne "$BLUE[*] Enter config name to delete$CLC > "
+read config
+# deleting a specific config
+if [[ -d "$config" ]];then
+        echo -ne "    [+] Deleting $config ..."
+        stow -D ~ "$config"
+        sleep 1
+        echo -ne "... \t$GREEN[DONE]$CLC"
+        echo -ne "\n\n"
+        exit
+else
+        # Change directory
+        cd config
+        if [[ -d "$config" ]];then
+                echo -ne "    [+] Deleting $config ..."
+                stow -D ~ "$config"
+                sleep 1
+                echo -ne "... \t$GREEN[DONE]$CLC"
+                echo -ne "\n\n"
+                exit
+        else
+                # Get out of directory
+                # Print error message and exit
+                cd ..
+                echo -e "    $RED[-] $config config not found$CLC.\n"
+                exit
+        fi
+fi
+}
+
+# View all the available config
+view_configs(){
+echo ""                       	
+echo "├────────────────[Available Configs]──────────────────┤"
+echo "│ bash color compton fonts homepage irssi vim zathura │"
+echo "│ local newsboat themes tmux vim weechat ranger       │"
+echo "│ bspwm cava i3-gaps lemonbar luakit mpd mpv rofi     │"
+echo "│ mutt ncmpcpp polybar popups pulse qutebrowser sxhkd │"
+echo "└─────────────────────────────────────────────────────┘"
+echo ""
+exit
+}
+
+#
+#    MAIN
+#
+
+while :;
+do
+        if [[ $STATUS = TRUE ]];then
+                banner
+                menu
+
+                echo -en "\nEnter your choice bellow.\n\n$BLUE>$CLC "
+                read option
+                echo ""
+
+                if [[ "$option" = 1 ]];then
+                        install_all
+                elif [[ "$option" = 2 ]];then
+                        install_config
+                elif [[ "$option" = 3 ]];then
+                        delete_all
+                elif [[ "$option" = 4 ]];then
+                        delete_config
+                elif [[ "$option" = 5 ]];then
+                        view_configs
+                elif [[ "$option" = 6 ]];then
+                        echo -en "$GREEN"
+                        echo -e "Bye $CLC\n"
+                        exit
+                fi
+        fi
+       
+        clear
+done

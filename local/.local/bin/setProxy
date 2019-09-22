@@ -1,0 +1,32 @@
+#!/bin/bash
+# Author: https://github.com/cOb4l7
+# Description: Set proxy address
+
+export http_proxy='http://whonix:9100'
+export https_proxy=$http_proxy
+export ftp_proxy=$http_proxy
+export rsync_proxy=$http_proxy
+
+usage(){
+        echo "Usage: source $(basename $0) [OPTIONS]"
+        echo -e "\n\n [OPTIONS]"
+        echo -e "\n --set   To set proxy address\n --clear To clear proxy address"
+        echo ""
+}
+
+if [[ $# -eq 0 ]];then
+        usage
+elif [[ $# -eq 1 ]];then
+        if [[ $1 = "--set" ]];then
+                export http_proxy='http://whonix:9100'
+                export https_proxy=$http_proxy
+                export ftp_proxy=$http_proxy
+                export rsync_proxy=$http_proxy
+        elif [[ $1 = "--clear" ]];then
+                unset http_proxy https_proxy ftp_proxy rsync_proxy
+        else
+                usage
+        fi
+else
+        usage
+fi

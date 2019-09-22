@@ -1,0 +1,22 @@
+#!/bin/bash
+# Description: A simple script that uses dunst and notify-send to notify the
+#              cOb4l7 when the battery is criticaly low or full. I find this
+#              useful when since Igot rid of my status bar
+
+export DISPLAY=:0
+export PATH=/home/cOb4l7/.local/bin:$PATH
+export $(dbus-launch)
+
+if [[ -d /sys/class/power_supply/BAT0 ]]; then
+
+        batteryState=$(cat /sys/class/power_supply/BAT0/status)
+        batteryPower=$(cat /sys/class/power_supply/BAT0/capacity)
+    
+        if [[ "${batteryState}" == "Discharging" && ${batteryPower} -le 20 ]]; then
+              notify-send -u critical -t 60000  " BATTERY LOW "
+
+        elif [[ "${batteryState}" == "Charging" && ${batteryPower} -eq 100 ]]; then
+                notify-send -u normal " BATTERY FULL "
+        fi
+
+fi	
