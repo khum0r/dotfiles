@@ -48,7 +48,7 @@ EOF
 install_all(){
 echo -e "$BLUE[*] Installing all the configs$CLC\n "
 # install parent configs
-for config in {bash,colors,compton,fonts,homepage,irssi,local,newsboat,themes,vim,weechat}
+for config in {bash,colors,compton,fonts,local,newsboat,themes,vim,weechat,tmux,ranger,bspwm,polybar,rofi,mutt,sxhkd}
 do
         echo -ne "    [+] Installing $config ..."
         stow -t ~ "$config"
