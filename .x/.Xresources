@@ -92,4 +92,4 @@ URxvt.iso14755_52:         false
 Xcursor.theme:             Venom
 
 !! Color theme
-#include "/home/mohabaks/.colors/linux"
+#include "/home/khum0r/.colors/linux"
